@@ -1,5 +1,6 @@
 global using RBXOSeed.Extensions;
 using Microsoft.AspNetCore.Routing.Matching;
+using RBXOSeed;
 using RBXOSeed.Data;
 using RBXOSeed.Services;
 using RBXOSeed.Utility;
@@ -49,6 +50,7 @@ await NodeProcessor.PopulateNodeBag();
 _ = NodeProcessor.StartNodeQueue();
 _ = NodeProcessor.StartNodePortChecks();
 
+Globals.CLIVersion = $"{Globals.MajorVer}.{Globals.MinorVer}.{Globals.RevisionVer}";
 //This needs to be at bottom.
 app.Run();
 
