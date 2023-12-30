@@ -1,4 +1,5 @@
-##RBXO SEED
+## RBXO SEED
+
 [![Generic badge](https://img.shields.io/badge/IDE-VS2022-blue.svg)](https://shields.io/)
 [![Generic badge](https://img.shields.io/badge/C%23-10%2E0-blue.svg)](https://shields.io/)
 [![Generic badge](https://img.shields.io/badge/%2ENet%20Core-6%2E0-blue.svg)](https://shields.io/)
@@ -19,10 +20,6 @@ Last Release
 
 ![GitHub Release Date](https://img.shields.io/github/release-date/ReserveBlockIO/RBXOSeed)
 
-Last Pre-Release
-
-![GitHub (Pre-)Release Date](https://img.shields.io/github/release-date-pre/ReserveBlockIO/RBXOSeed)
-
 # RBXO Seed
 For more information and to follow latest news go to:
 https://reserveblock.io
@@ -41,7 +38,7 @@ For more information please read the ReserverBlock whitepaper or litepaper.
 * CLI WEB API
 * Visual Studio 2022 | https://visualstudio.microsoft.com/vs/
 
-# Contributing to ReserveBlock
+# Contributing to RBXO Seed
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
 - Reporting a bug
@@ -123,6 +120,6 @@ This document was adapted from the open-source contribution guidelines for [Face
 
 # License
 
-ReserveBlock-CLI is released under the terms of the MIT license. See [COPYING](COPYING) for more
+RBXO Seed is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
