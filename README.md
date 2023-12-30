@@ -1,8 +1,8 @@
 ## RBXO SEED
 
 [![Generic badge](https://img.shields.io/badge/IDE-VS2022-blue.svg)](https://shields.io/)
-[![Generic badge](https://img.shields.io/badge/C%23-10%2E0-blue.svg)](https://shields.io/)
-[![Generic badge](https://img.shields.io/badge/%2ENet%20Core-6%2E0-blue.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/C%23-12%2E0-blue.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/%2ENet%20Core-8%2E0-blue.svg)](https://shields.io/)
 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ReserveBlockIO/RBXOSeed)
 ![GitHub repo size](https://img.shields.io/github/repo-size/ReserveBlockIO/RBXOSeed)
