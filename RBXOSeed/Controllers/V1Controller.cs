@@ -28,7 +28,7 @@ namespace RBXOSeed.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<string> Get([FromQuery]string? walletVersion, bool? isVal)
+        public async Task<string> Get([FromQuery]string? walletVersion, [FromQuery]bool? isVal)
         {
             if (!HttpContext.Response.Headers.ContainsKey("Access-Control-Allow-Origin"))
             {
@@ -80,7 +80,7 @@ namespace RBXOSeed.Controllers
             else  //users can connect up to 14 outbound connections this will get 14 random
             {
                 var rnd = new Random();
-                var nodeList = nodes.Where(x => x.IsActive == true).Select(x => x.NodeIP).Take(50);
+                var nodeList = nodes.Where(x => x.IsPortOpen == true).OrderBy(x => rnd.Next()).Select(x => x.NodeIP).Take(50);
                 return nodeList;
             }
         }
@@ -89,7 +89,7 @@ namespace RBXOSeed.Controllers
 
         #region Call to Node
         [HttpGet("GetCallToNode")]
-        public async Task<bool> GetCallToNode()
+        public async Task<bool> GetCallToNode([FromQuery] bool? isVal)
         {
             bool output = true;
             if (!HttpContext.Response.Headers.ContainsKey("Access-Control-Allow-Origin"))
@@ -102,14 +102,17 @@ namespace RBXOSeed.Controllers
             var nodeExist = Nodes.GetAll()?.Query().Where(x => x.NodeIP == ip).FirstOrDefault();
             if(nodeExist == null)
             {
+                var isPortOpen = IPUtility.IsPortOpen(ip, Globals.PortToCheck);
+                var isValidator = isVal == null ? false : isVal.Value == false ? false : true;
+
                 Nodes node = new Nodes {
                     Active = true,
                     CallOuts = 0,
                     CreateDateTimeUtc = DateTime.UtcNow,
                     FailureCount = 0,
-                    IsActive = false,
-                    IsPortOpen = true,
-                    IsValidator= false,
+                    IsActive = true,
+                    IsPortOpen = isPortOpen,
+                    IsValidator= isValidator,
                     LastActiveDate= DateTime.UtcNow,
                     LastPolled = DateTime.UtcNow,
                     ModifiedDateTimeUtc= DateTime.UtcNow,

@@ -27,17 +27,22 @@ namespace RBXOSeed.Utility
 
         public static bool IsPortOpen(string host, int port)
         {
-            try
+            using (TcpClient tcpClient = new TcpClient())
             {
-                using (var client = new TcpClient())
+                try
                 {
-                    client.Connect(host, port);
+                    var result = tcpClient.BeginConnect(host, port, null, null);
+                    var success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(1));
+                    if (!success)
+                    {
+                        throw new SocketException();
+                    }
                     return true;
                 }
-            }
-            catch (SocketException)
-            {
-                return false;
+                catch (SocketException)
+                {
+                    return false;
+                }
             }
         }
     }

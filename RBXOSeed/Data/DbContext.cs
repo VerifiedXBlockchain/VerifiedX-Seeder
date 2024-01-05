@@ -23,16 +23,18 @@ namespace RBXOSeed.Data
         {
             string path = GetDatabasePath();
 
-            var mapper = new BsonMapper();
-            mapper.RegisterType<DateTime>(
-                value => value.ToString("o", CultureInfo.InvariantCulture),
-                bson => DateTime.ParseExact(bson, "o", CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind));
-            mapper.RegisterType<DateTimeOffset>(
-                value => value.ToString("o", CultureInfo.InvariantCulture),
-                bson => DateTimeOffset.ParseExact(bson, "o", CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind));
+            //Only use if you have issues with DateTime/DateTimeOffset
+            //var mapper = new BsonMapper();
+            //mapper.RegisterType<DateTime>(
+            //    value => value.ToString("o", CultureInfo.InvariantCulture),
+            //    bson => DateTime.ParseExact(bson, "o", CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind));
+            //mapper.RegisterType<DateTimeOffset>(
+            //    value => value.ToString("o", CultureInfo.InvariantCulture),
+            //    bson => DateTimeOffset.ParseExact(bson, "o", CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind));
 
-            DB = new LiteDatabase(new ConnectionString { Filename = path + RSRV_DB_NAME, Connection = ConnectionType.Direct, ReadOnly = false }, mapper);
+            DB = new LiteDatabase(new ConnectionString { Filename = path + RSRV_DB_NAME, Connection = ConnectionType.Direct, ReadOnly = false });
 
+            //Assumes UTC Time for Dates
             DB.Pragma("UTC_DATE", true);
         }
 

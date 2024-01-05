@@ -53,7 +53,7 @@ namespace RBXOSeed.Services
         {
             while (true)
             {
-                var delay = Task.Delay(new TimeSpan(0,60,0)); // runs every 60 mins.
+                var delay = Task.Delay(new TimeSpan(1,0,0)); // runs every 1 hour.
 
                 await NodePortProcessorLock.WaitAsync();
 
@@ -119,8 +119,8 @@ namespace RBXOSeed.Services
 
             if (nodes?.Count() > 0)
             {
-                foreach (var node in nodes)
-                {
+                var coreCount = Environment.ProcessorCount;
+                Parallel.ForEach(nodes, new ParallelOptions { MaxDegreeOfParallelism = coreCount == 4 ? 2 : 4 }, (node, loopState) => {
                     var result = IPUtility.IsPortOpen(node.NodeIP, Globals.PortToCheck);
                     if (result)
                     {
@@ -143,7 +143,7 @@ namespace RBXOSeed.Services
                     }
 
                     Nodes.GetAll()?.UpdateSafe(node);
-                }
+                });
             }
         }
     }
