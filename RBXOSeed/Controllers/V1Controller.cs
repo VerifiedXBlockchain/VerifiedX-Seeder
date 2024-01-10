@@ -28,7 +28,7 @@ namespace RBXOSeed.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<string> Get([FromQuery]string? walletVersion, [FromQuery]bool? isVal)
+        public async Task<string> Get([FromQuery]string? walletVersion = null, [FromQuery]bool? isVal = null)
         {
             if (!HttpContext.Response.Headers.ContainsKey("Access-Control-Allow-Origin"))
             {
@@ -43,7 +43,7 @@ namespace RBXOSeed.Controllers
             {
                 if(!Globals.NodeBag.Contains(ip))
                 {
-                    Globals.NodeQueue.Enqueue((ip, isVal.Value));
+                    Globals.NodeQueue.Enqueue((ip, isVal != null ? isVal.Value : false));
                     Globals.NodeBag.Add(ip);
                 }
                     
@@ -82,6 +82,40 @@ namespace RBXOSeed.Controllers
                 var rnd = new Random();
                 var nodeList = nodes.Where(x => x.IsPortOpen == true).OrderBy(x => rnd.Next()).Select(x => x.NodeIP).Take(50);
                 return nodeList;
+            }
+        }
+
+        #endregion
+
+        #region Gets peers to send out
+        [HttpGet("GetPeers")]
+        public ContentResult GetPeers()
+        {
+            if (!HttpContext.Response.Headers.ContainsKey("Access-Control-Allow-Origin"))
+            {
+                HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            }
+
+            HttpContext.Response.Headers.ContentType = "application/json";
+
+            var ip = IPUtility.GetIPAddress(HttpContext);
+
+            var nodes = Nodes.GetAll()?.Query().Where(x => x.NodeIP != ip && x.IsActive == true).ToList();
+
+            if (nodes.Count() == 0)
+            {
+                return Content(JsonConvert.SerializeObject(new { Success = false, Message = "No Nodes", Nodes = new List<string>() }, Formatting.Indented));
+            }
+            if (nodes.Count() <= 20) //users can connect up to 14 outbound connections
+            {
+                var nodeList = nodes.Select(x => x.NodeIP);
+                return Content(JsonConvert.SerializeObject(new { Success = true, Message = "Nodes Found", Nodes = nodeList.ToList() }, Formatting.Indented));
+            }
+            else  //users can connect up to 14 outbound connections this will get 14 random
+            {
+                var rnd = new Random();
+                var nodeList = nodes.Where(x => x.IsPortOpen == true).OrderBy(x => rnd.Next()).Select(x => x.NodeIP).Take(50);
+                return Content(JsonConvert.SerializeObject(new { Success = true, Message = "Nodes Found", Nodes = nodeList.ToList() }, Formatting.Indented));
             }
         }
 

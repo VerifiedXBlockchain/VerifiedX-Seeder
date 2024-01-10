@@ -4,6 +4,7 @@ using RBXOSeed;
 using RBXOSeed.Data;
 using RBXOSeed.Services;
 using RBXOSeed.Utility;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,8 @@ var app = builder.Build();
 //app.Urls.Add("http://localhost:80");
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+if (app.Environment.IsDevelopment() || environmentName == "Devprod")
 {
     app.UseSwagger();
     app.UseSwaggerUI(c => {
@@ -29,11 +31,25 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseHttpsRedirection();
+//Commented these out to avoid too many redirects error from Cloudflare
+//app.UseHttpsRedirection();
+//app.UseAuthorization();
 
-app.UseAuthorization();
+//Also used for Cloudflare
+// The default HSTS value is 30 days
+app.UseHsts();
 
 app.MapControllers();
+
+var culture = CultureInfo.GetCultureInfo("en-US");
+if (Thread.CurrentThread.CurrentCulture.Name != "en-US")
+{
+    CultureInfo.DefaultThreadCurrentCulture = culture;
+    CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+    Thread.CurrentThread.CurrentCulture = culture;
+    Thread.CurrentThread.CurrentUICulture = culture;
+}
 
 DbContext.Initialize();
 await DbContext.CheckPoint();

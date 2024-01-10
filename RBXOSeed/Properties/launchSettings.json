@@ -29,6 +29,17 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+    "httpsProd": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://0.0.0.0:443;http://0.0.0.0:80",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Devprod"
+      },
+      "commandLineArgs": "-seednodes"
+    },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,

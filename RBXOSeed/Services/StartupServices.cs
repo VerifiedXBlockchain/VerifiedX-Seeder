@@ -3,6 +3,7 @@ using RBXOSeed.Models;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
+using System.Text.Json.Nodes;
 
 namespace RBXOSeed.Services
 {
@@ -46,10 +47,23 @@ namespace RBXOSeed.Services
                 if (!nodeCheck)
                 {
                     var nodesData = await File.ReadAllTextAsync(@"..\RBXOSeed\NodeSeedData\nodes.txt");
-                    var nodesDeserialized = JsonConvert.DeserializeObject<List<Nodes>>(nodesData);
-                    foreach (var node in nodesDeserialized)
+                    var nodesArray = nodesData.Split(',');
+                    
+                    foreach (var node in nodesArray)
                     {
-                        Nodes.SaveNode(node);
+                        Nodes nNode = new Nodes
+                        {
+                            CallOuts = 0,
+                            IsActive = true,
+                            IsPortOpen = true,
+                            LastActiveDate = DateTime.UtcNow,
+                            LastPolled = DateTime.UtcNow,
+                            IsValidator = false,
+                            NodeIP = node.Replace(" ", ""),
+                            FailureCount = 0,
+
+                        };
+                        Nodes.SaveNode(nNode);
                     }
                 }
             }
