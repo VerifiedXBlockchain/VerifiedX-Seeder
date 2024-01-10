@@ -122,8 +122,8 @@ namespace RBXOSeed.Controllers
         #endregion
 
         #region Call to Node
-        [HttpGet("GetCallToNode")]
-        public async Task<bool> GetCallToNode([FromQuery] bool? isVal)
+        [HttpGet("GetCallToNode/{isVal?}")]
+        public async Task<bool> GetCallToNode(bool isVal = false)
         {
             bool output = true;
             if (!HttpContext.Response.Headers.ContainsKey("Access-Control-Allow-Origin"))
@@ -137,7 +137,7 @@ namespace RBXOSeed.Controllers
             if(nodeExist == null)
             {
                 var isPortOpen = IPUtility.IsPortOpen(ip, Globals.PortToCheck);
-                var isValidator = isVal == null ? false : isVal.Value == false ? false : true;
+                var isValidator = isVal;
 
                 Nodes node = new Nodes {
                     Active = true,
