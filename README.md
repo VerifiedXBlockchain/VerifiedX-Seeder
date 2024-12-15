@@ -1,44 +1,44 @@
-## RBXO SEED
+## VFX SEEDER
 
 [![Generic badge](https://img.shields.io/badge/IDE-VS2022-blue.svg)](https://shields.io/)
 [![Generic badge](https://img.shields.io/badge/C%23-12%2E0-blue.svg)](https://shields.io/)
 [![Generic badge](https://img.shields.io/badge/%2ENet%20Core-8%2E0-blue.svg)](https://shields.io/)
 
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ReserveBlockIO/RBXOSeed)
-![GitHub repo size](https://img.shields.io/github/repo-size/ReserveBlockIO/RBXOSeed)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/VerifiedXBlockchain/VerifiedX-Seeder)
+![GitHub repo size](https://img.shields.io/github/repo-size/VerifiedXBlockchain/VerifiedX-Seeder)
 
-![license](https://img.shields.io/github/license/ReserveBlockIO/RBXOSeed)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ReserveBlockIO/RBXOSeed/dotnet.yml)
-![issues](https://img.shields.io/github/issues/ReserveBlockIO/RBXOSeed)
+![license](https://img.shields.io/github/license/VerifiedXBlockchain/VerifiedX-Seeder)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/VerifiedXBlockchain/VerifiedX-Seeder/dotnet.yml)
+![issues](https://img.shields.io/github/issues/VerifiedXBlockchain/VerifiedX-Seeder)
 ![Discord](https://img.shields.io/discord/917499597692211260?label=discord)
 
 ##  Main Branch 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/ReserveBlockIO/RBXOSeed)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ReserveBlockIO/RBXOSeed/main)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/VerifiedXBlockchain/VerifiedX-Seeder)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/VerifiedXBlockchain/VerifiedX-Seeder/main)
 
 Last Release
 
 ![GitHub Release Date](https://img.shields.io/github/release-date/ReserveBlockIO/RBXOSeed)
 
-# RBXO Seed
+# VFX Seeder
 For more information and to follow latest news go to:
-https://reserveblock.io
+https://verifiedx.io
 
 This repo is currently a work in progress. New commits pushing more of the seed are staged. Please follow to get latest updates!
 
-# What is RBXO Seed?
+# What is VFX Seeder?
 This is an open source tool to create a network map and validator map. This will also help in the initial seed of peers
 
-For more information please read the ReserverBlock whitepaper or litepaper.
+For more information please read the VerifiedX whitepaper or litepaper.
 
-### RBXO Seed Is Built on the Following ###
+### VFX Seed Is Built on the Following ###
 
 * C#
 * .Net 8.0 | https://dotnet.microsoft.com/en-us/download/dotnet/8.0
 * CLI WEB API
 * Visual Studio 2022 | https://visualstudio.microsoft.com/vs/
 
-# Contributing to RBXO Seed
+# Contributing to VFX Seed
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
 - Reporting a bug
@@ -120,6 +120,6 @@ This document was adapted from the open-source contribution guidelines for [Face
 
 # License
 
-RBXO Seed is released under the terms of the MIT license. See [COPYING](COPYING) for more
+VFX Seeder is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
